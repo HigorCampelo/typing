@@ -52,7 +52,7 @@ body {
      top: 0;
      right: 0;
      text-align: left;
-     padding: 20px 40px;
+     padding: 20px 40px 20px 70px;
      font-size: 1.8rem;
      opacity: 0.5;
      line-height: 2.5rem; /* aumenta o tamanho entre as linhas li*/

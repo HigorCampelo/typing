@@ -14,11 +14,29 @@ const App = () => {
 
     const [typedKeys, setTypedKeys] = useState([]);
     const [validKeys, setValidKeys] = useState([]);
+    const [completedWords, setCompletedWords] = useState([]);
     const [word, setWord] = useState('');
 
     useEffect(() => {
         setWord(getRandomWord());
     }, []);
+
+    useEffect(() => {
+        const wordFromValidKeys = validKeys.join(''); //transforma o validKeys em uma palavra
+        if (word && word === wordFromValidKeys) {
+            //adicionar word ao completedWord
+            //limpar o array validKeys
+            //buscar uma nova palavra que não esteja no completedWord
+            setCompletedWords((prev) => [...prev, word]);
+            let newWord = null;
+            do {
+                newWord = getRandomWord();
+            } while (completedWords.includes(newWord));
+
+            setValidKeys([]);
+            setWord(newWord);
+        }
+    }, [word, validKeys, completedWords]);
 
 
     const handleKeyDown = (e) => {
@@ -74,9 +92,7 @@ const App = () => {
 
         <div className="completed-words">
             <ol>
-                <li>cidade</li>
-                <li>carro</li>
-                <li>profissional</li>
+                {completedWords.map((x) => (<li key={x}>{x}</li>))}
             </ol>
         </div>
 
