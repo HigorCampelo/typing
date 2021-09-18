@@ -18,8 +18,9 @@ body {
 }
 
 .container {
-    width: 100%;
+    width: 100vw;
     height: 100vh;
+    border: solid 1px red;
     text-align: center;
     display: flex;
     flex-direction: column;
